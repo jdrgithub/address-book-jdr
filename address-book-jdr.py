@@ -15,8 +15,6 @@ def check_4_file():
                 return False
     return True
 
-check_4_file()
-
 def add_contact():
     """ Add contact """
     headers = ['name', 'address', 'phone', 'email']
@@ -24,9 +22,28 @@ def add_contact():
     for header in headers:
         header = input(header + ": ")
         list.append(header)
-    return list
+    filename = 'contact.txt'
+    if check_4_file():
+        with open(filename, 'a') as file_object:
+                for item in list:
+                    file_object.write("%s \n" % item)
 
 add_contact()
+
+def read_in_file():
+    filename = 'contact.txt'
+    if check_4_file():
+        print("The contact.txt file is there.")
+    else:
+        return "You need a new contact.txt file!"
+	
+    with open(filename) as file_object:
+        lines = file_object.readlines()
+    
+    for line in lines:
+        print(line)
+
+read_in_file()
 
 def print_book():
     """ Print book """

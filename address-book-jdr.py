@@ -22,16 +22,16 @@ def add_contact():
     for header in headers:
         header = input(header + ": ")
         list.append(header)
-    filename = 'contact.txt'
+    filename = 'contacts.txt'
     if check_4_file():
         with open(filename, 'a') as file_object:
-                for item in list:
-                    file_object.write("%s \n" % item)
+                file_object.write("%s \n" % list)
 
 add_contact()
 
-def read_in_file():
-    filename = 'contact.txt'
+def print_book():
+    """ Display contents of contacts.txt file."""
+    filename = 'contacts.txt'
     if check_4_file():
         print("The contact.txt file is there.")
     else:
@@ -41,13 +41,24 @@ def read_in_file():
         lines = file_object.readlines()
     
     for line in lines:
-        print(line)
+        print(line.rstrip())
 
-read_in_file()
+print_book()
 
-def print_book():
-    """ Print book """
-    pass
+def read_file():
+    """ Read in contents of contacts.txt into a list """
+    if check_4_file():
+        print("The contact.txt file is there.")
+    else:
+        return "You need a new contact.txt file!"
+    list = []
+    filename = 'contacts.txt'
+    with open(filename) as f_obj:
+        lines = f_obj.readlines()
+    for line in lines:
+        print(line.rstrip())
+
+read_file()
 
 def contact_search(name):
     """ Contact search """

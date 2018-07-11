@@ -8,27 +8,32 @@ def main():
 
 def menu():
     answer=True
-	while answer:
-    print ("""
-    1. Add a record
-    2. Delete record
-    3. Look up record
-    4. Change record
-	5. Display all
-	Exit/Quit
-    """)
-    ans=raw_input("What would you like to do? ") 
-    if answer == "1": 
-      print("\n Record added") 
+    while answer:
+        print ("""			1. Add a record
+	    2. Delete record
+	    3. Look up record
+	    4. Change record
+	    5. Display all
+	    6. Exit/Quit """)
+    answer = raw_input("What would you like to do? ")
+    if answer == "1":
+        print("\n Record added")
     elif answer == "2":
-      print("\n Record deleted") 
+        print("\n Record deleted")
     elif answer == "3":
-      print("\n Record Found") 
+        print("\n Record Found")
     elif answer == "4":
-      print("\n Goodbye") 
+        print("\n Record Changed")
+    elif answer == "5":
+        print("\n Display Record")
+    elif answer == "6":
+        print("\n Goodbye")
+        exit()			
     elif answer != "":
-      print("\n Try again"	
+        print("\n Try again") 
 
+menu()
+ 
 def check():
     """ Check for contacts.txt file """
     try:
@@ -46,7 +51,7 @@ def add_contact():
         header = input(header + ": ")
         list.append(header)
     filename = 'contacts.txt'
-    if check_4_file():
+    if check():
         with open(filename, 'a') as file_object:
                 file_object.write("%s \n" % list)
 

@@ -6,26 +6,27 @@ def main():
     """ Main entry point for the script."""
     pass
 
-def check_4_file(contacts_file='contacts.txt'):
+def check_4_file():
     """ Check for contacts.txt file """
     try:
-                f = open(contacts_file, mode)
-                f.close()
-        except IOError as e:
+        f = open('contacts.txt')
+        f.close()
+    except IOError as e:
                 return False
-        return True
+    return True
 
-check_4_file("contacts.txt")
+check_4_file()
 
 def add_contact():
     """ Add contact """
-    for param in (name, address, email, phone):
-                param = input(param + "? ")
-                little_list = [name, address, email, phone]
-                big_list = big_list.append(little_list)
-        return big_list
+    headers = ['name', 'address', 'phone', 'email']
+    list = []
+    for header in headers:
+        header = input(header + ": ")
+        list.append(header)
+    return list
 
-big_list = add_contact():
+add_contact()
 
 def print_book():
     """ Print book """
@@ -37,6 +38,8 @@ def contact_search(name):
 
 def modify_contact(name):
     """ Modify contact """
+    """ Do a conditional test """
+    """ like name in list """
     pass
 
 def delete_contact(name):

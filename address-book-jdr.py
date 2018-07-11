@@ -6,7 +6,30 @@ def main():
     """ Main entry point for the script."""
     pass
 
-def check_4_file():
+def menu():
+    answer=True
+	while answer:
+    print ("""
+    1. Add a record
+    2. Delete record
+    3. Look up record
+    4. Change record
+	5. Display all
+	Exit/Quit
+    """)
+    ans=raw_input("What would you like to do? ") 
+    if answer == "1": 
+      print("\n Record added") 
+    elif answer == "2":
+      print("\n Record deleted") 
+    elif answer == "3":
+      print("\n Record Found") 
+    elif answer == "4":
+      print("\n Goodbye") 
+    elif answer != "":
+      print("\n Try again"	
+
+def check():
     """ Check for contacts.txt file """
     try:
         f = open('contacts.txt')
@@ -32,7 +55,7 @@ add_contact()
 def print_book():
     """ Display contents of contacts.txt file."""
     filename = 'contacts.txt'
-    if check_4_file():
+    if check():
         print("The contact.txt file is there.")
     else:
         return "You need a new contact.txt file!"
@@ -47,7 +70,7 @@ print_book()
 
 def read_file():
     """ Read in contents of contacts.txt into a list """
-    if check_4_file():
+    if check():
         print("The contact.txt file is there.")
     else:
         return "You need a new contact.txt file!"
@@ -74,9 +97,6 @@ def delete_contact(name):
     """ Delete contact """
     pass
 
-def manage_menu():
-    """ Manage menu """
-    pass
 
 if __name__ == '__main__':
     sys.exit(main())

@@ -4,36 +4,45 @@ import os.path
 
 def main():
     """ Main entry point for the script."""
-    pass
 
 def menu():
-    answer=True
-    while answer:
-        print ("""			1. Add a record
-	    2. Delete record
-	    3. Look up record
-	    4. Change record
-	    5. Display all
-	    6. Exit/Quit """)
-    answer = raw_input("What would you like to do? ")
-    if answer == "1":
-        print("\n Record added")
-    elif answer == "2":
-        print("\n Record deleted")
-    elif answer == "3":
-        print("\n Record Found")
-    elif answer == "4":
-        print("\n Record Changed")
-    elif answer == "5":
-        print("\n Display Record")
-    elif answer == "6":
+    """ Main Menu """
+    print(30 * "-", "MENU", 30 * "-")
+    print("1. Add a record")
+    print("2. Delete a record") 
+    print("3. Look up record")
+    print("4. Change a record")
+    print("5. Display all records")
+    print("6. Check contact file")
+    print("7. Exit")
+    print(67 * "-")
+		
+loop=True
+while loop:
+    menu()
+    choice = input("What would you like to do? ")
+
+    if choice == "1":
+        print("\n Add Record")
+		add_contact()
+    elif choice == "2":
+        print("\n Delete Record")
+    elif choice == "3":
+        print("\n Find Record")
+    elif choice == "4":
+        print("\n Change Record")
+    elif choice == "5":
+        print("\n Display All Records")
+		print_book()
+    elif choice == "6":
+        print("\n Check on contact.txt")
+		check()
+    elif choice == "7":
         print("\n Goodbye")
         exit()			
-    elif answer != "":
+    else: 
         print("\n Try again") 
 
-menu()
- 
 def check():
     """ Check for contacts.txt file """
     try:
@@ -55,8 +64,6 @@ def add_contact():
         with open(filename, 'a') as file_object:
                 file_object.write("%s \n" % list)
 
-add_contact()
-
 def print_book():
     """ Display contents of contacts.txt file."""
     filename = 'contacts.txt'
@@ -70,8 +77,6 @@ def print_book():
     
     for line in lines:
         print(line.rstrip())
-
-print_book()
 
 def read_file():
     """ Read in contents of contacts.txt into a list """
@@ -87,7 +92,7 @@ def read_file():
         print(line.rstrip())
 
 read_file()
-
+		
 def contact_search(name):
     """ Contact search """
     pass

@@ -5,15 +5,17 @@ import os.path
 def main():
     """ Main entry point for the script."""
 
+biglist = []
+	
 def menu():
     """ Main Menu """
     print(30 * "-", "MENU", 30 * "-")
-    print("1. Add a record")
+    print("1. Add contact")
     print("2. Delete contact") 
-    print("3. Look up record")
-    print("4. Change a record")
+    print("3. Find contact")
+    print("4. Change an entry")
     print("5. Display all records")
-    print("6. Check contact file")
+    print("6. View and verify contact.txt file")
     print("7. Exit")
     print(67 * "-")
 
@@ -28,32 +30,53 @@ def check():
 
 def add_contact():
     """ Add contact """
-    headers = ['name', 'address', 'phone', 'email']
-    list = []
+    # Parameter names
+    headers = ['Name', 'Address', 'Phone', 'Email']
+    
+    # List representing each record as it is input
+    a_list = []
+	
+    # List representing all records
+    all_records = []
+	
+    # File holding data
+    filename = 'contacts.txt'
+
+    # Use the header titles in headers to prompt for input
     for header in headers:
         entry = raw_input(header + ': ')
-        list.append(entry)
-    filename = 'contacts.txt'
-    with open(filename, 'a') as file_object:
-        line = str(':'.join(list))
-        file_object.write(str(line) + "\n")
+        a_list.append(entry)
 		
+    # Read nested list from file into all_records	
+    with open(filename) as file_object:
+        all_records = list(file_object.read())
+		
+    # Change from string into list
+    list(all_records)
+
+    """  Put the nested list from the file into biglist		
+    biglist = all_records[:] """
+	
+    # Append current contact record to biglist
+    all_records.append(a_list)
+
+    # Write out nested list biglist to file
+    with open(filename, 'a') as file_object:
+        file_object.write(str(all_records))
+		
+	
 def delete_contact():
     """ Delete contact """
-    """ General steps
-	Ask the user for a name to delete record of
-	Read in all records to a list, unless the first field matches the supplied name
-	Write lists out to contacts.txt  """
     filename = 'contacts.txt'
     name = raw_input("Name to delete record of? ")
     with open(filename) as file_object:
-        lines = f_obj.readlines()
+        a_lines = file_object.reada_lines()
     list_out = []		
-    for line in lines:
-        if line[0] == name:
+    for a_line in a_lines:
+        if a_line[0] == name:
             continue
         else:
-            list_out.append(line)		
+            list_out.append(a_line)		
     with open(filename, 'w') as file_object:
         file_object.write(str(list_out))	
 		    
@@ -66,10 +89,10 @@ def print_book():
         return "You need a new contact.txt file!"
 	
     with open(filename) as file_object:
-        lines = file_object.readlines()
+        a_lines = file_object.readlines()
     
-    for line in lines:
-        print(line.rstrip())
+    for a_line in a_lines:
+        print(a_line.rstrip())
 
 
 def read_file():
@@ -81,9 +104,9 @@ def read_file():
     list = []
     filename = 'contacts.txt'
     with open(filename) as f_obj:
-        lines = f_obj.readlines()
-    for line in lines:
-        print(line.rstrip())
+        a_lines = f_obj.reada_lines()
+    for a_line in a_lines:
+        print(a_line.rstrip())
 
 		
 def find_contact(name):

@@ -62,6 +62,26 @@ def add_contact():
     with open(filename, 'a') as file_object:
         line = str(':'.join(list))
         file_object.write(str(line) + "\n")
+		
+def delete_contact(name):
+    """ Delete contact """
+	""" General steps
+		Ask the user for a name to delete record of
+		Read in all records to a list, unless the first field matches the supplied name
+		Write lists out to contacts.txt  """
+	filename = 'contacts.txt'
+	name = raw_input("Name to delete record of? ")
+	with open(filename) as file_object:
+	    lines = f_obj.readlines()
+    list_out = []		
+	for line in lines:
+	    if line[0] == name:
+            continue
+		else:
+            list_out.append(line)		
+    with open(filename, 'w') as file_object:
+        file_object.write(str(list_out))	
+		    
 
 def print_book():
     """ Display contents of contacts.txt file."""
@@ -77,7 +97,7 @@ def print_book():
     for line in lines:
         print(line.rstrip())
 
-""" How about I replace this with something simpler """
+
 def read_file():
     """ Read in contents of contacts.txt into a list """
     if check():
@@ -90,9 +110,7 @@ def read_file():
         lines = f_obj.readlines()
     for line in lines:
         print(line.rstrip())
-	
 
-read_file()
 		
 def contact_search(name):
     """ Contact search """
@@ -104,9 +122,7 @@ def modify_contact(name):
     """ like name in list """
     pass
 
-def delete_contact(name):
-    """ Delete contact """
-    pass
+
 
 
 if __name__ == '__main__':

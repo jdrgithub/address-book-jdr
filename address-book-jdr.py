@@ -24,7 +24,7 @@ while loop:
 
     if choice == "1":
         print("\n Add Record")
-		add_contact()
+        add_contact()
     elif choice == "2":
         print("\n Delete Record")
     elif choice == "3":
@@ -33,10 +33,10 @@ while loop:
         print("\n Change Record")
     elif choice == "5":
         print("\n Display All Records")
-		print_book()
+        print_book()
     elif choice == "6":
         print("\n Check on contact.txt")
-		check()
+        check()
     elif choice == "7":
         print("\n Goodbye")
         exit()			

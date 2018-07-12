@@ -1,24 +1,21 @@
-""" Address Book JDR  """ 
-import sys 
+import sys
 import os.path
 
-answer=True 
+def add_contact():
+    """ Add contact """
+    headers = ['name', 'address', 'phone', 'email']
+    list = []
+    for header in headers:
+        entry = raw_input(header + ': ')
+        list.append(entry)
+    filename = 'contacts.txt'
+    with open(filename, 'a') as file_object:
+        line = str(':'.join(list))
+        file_object.write(str(line) + "\n")
+add_contact()
 
-while answer:
-    print (""" 1. Add a record
-               2. Delete record
-               3. Look up record
-               4. Change record
-               5. Display all
-               6. Exit/Quit """)
-    answer=input("What would you like to do? ")
-    if answer == "1":
-        print("\n Record added")
-    elif answer == "2":
-        print("\n Record deleted")
-    elif answer == "3":
-        print("\n Record Found")
-    elif answer == "4":
-        print("\n Goodbye") 
-    elif answer != "":
-        print("\n Try again")
+
+
+
+
+

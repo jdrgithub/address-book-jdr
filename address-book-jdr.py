@@ -56,13 +56,13 @@ def add_contact():
     """ Add contact """
     headers = ['name', 'address', 'phone', 'email']
     list = []
-    for header in headers:
-        header = input(header + ": ")
-        list.append(header)
+    for entry in headers:
+        entry = input(entry)
+        list.append(entry)
     filename = 'contacts.txt'
     if check():
         with open(filename, 'a') as file_object:
-                file_object.write("%s \n" % list)
+                file_object.write(print(','.join(list)))
 
 def print_book():
     """ Display contents of contacts.txt file."""
@@ -78,6 +78,7 @@ def print_book():
     for line in lines:
         print(line.rstrip())
 
+""" How about I replace this with something simpler """
 def read_file():
     """ Read in contents of contacts.txt into a list """
     if check():
@@ -90,6 +91,7 @@ def read_file():
         lines = f_obj.readlines()
     for line in lines:
         print(line.rstrip())
+	
 
 read_file()
 		

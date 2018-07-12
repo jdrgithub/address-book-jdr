@@ -22,24 +22,23 @@ while loop:
     menu()
     choice = input("What would you like to do? ")
 
-    if choice == "1":
+    if choice == 1:
         print("\n Add Record")
         add_contact()
-    elif choice == "2":
+    elif choice == 2:
         print("\n Delete Record")
-    elif choice == "3":
+    elif choice == 3:
         print("\n Find Record")
-    elif choice == "4":
+    elif choice == 4:
         print("\n Change Record")
-    elif choice == "5":
+    elif choice == 5:
         print("\n Display All Records")
         print_book()
-    elif choice == "6":
+    elif choice == 6:
         print("\n Check on contact.txt")
         check()
-    elif choice == "7":
-        print("\n Goodbye")
-        exit()			
+    elif choice == 7:
+        sys.exit("Goodbye")			
     else: 
         print("\n Try again") 
 
@@ -56,13 +55,13 @@ def add_contact():
     """ Add contact """
     headers = ['name', 'address', 'phone', 'email']
     list = []
-    for entry in headers:
-        entry = input(entry)
+    for header in headers:
+        entry = raw_input(header + ': ')
         list.append(entry)
     filename = 'contacts.txt'
-    if check():
-        with open(filename, 'a') as file_object:
-                file_object.write(print(','.join(list)))
+    with open(filename, 'a') as file_object:
+        line = str(':'.join(list))
+        file_object.write(str(line) + "\n")
 
 def print_book():
     """ Display contents of contacts.txt file."""

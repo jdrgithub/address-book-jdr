@@ -26,7 +26,7 @@ def check():
         f = open('contacts.txt')
         f.close()
     except IOError as e:
-                return False
+        return False
     return True
 
 def add_contact():
@@ -71,24 +71,30 @@ def add_contact():
     pickle.dump(all_records, pickle_out)
     pickle_out.close()
 	
-
-
-
 	
 def delete_contact():
     """ Delete contact """
-    filename = 'contacts.txt'
+    # Get name to delete record of
     name = raw_input("Name to delete record of? ")
-    with open(filename) as file_object:
-        a_lines = file_object.reada_lines()
-    list_out = []		
-    for a_line in a_lines:
-        if a_line[0] == name:
-            continue
-        else:
-            list_out.append(a_line)		
-    with open(filename, 'w') as file_object:
-        file_object.write(str(list_out))	
+    
+	# Check to see if the file exists
+    if check():
+        if os.stat(filename).st_size != 0:
+        # If contacts.txt not empty read list in
+            pickle_in = open("contacts.txt","rb")
+            all_records = pickle.load(pickle_in)
+    else:
+	    print("The contacts file is empty!")
+		return
+    
+    # How about a menu listing users?
+	print("Type the name to delete: \n"
+	
+    name = raw_input()
+	
+
+		
+	
 		    
 def print_book():
     """ Display contents of contacts.txt file."""
@@ -128,8 +134,6 @@ def modify_contact_data(name):
     """ Do a conditional test """
     """ like name in list """
     pass
-
-
 		
 loop=True
 while loop:

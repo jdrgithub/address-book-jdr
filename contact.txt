@@ -13,13 +13,4 @@ S'Jim Johnson'
 p7
 aS'4 Johnson St.'
 p8
-aa(lp9
-S'Alice'
-p10
-aS'3 Alice Place'
-p11
-aS'0000'
-p12
-aS'alice@yahoo.com'
-p13
 aa.

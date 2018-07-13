@@ -77,23 +77,29 @@ def delete_contact():
     # Get name to delete record of
     name = raw_input("Name to delete record of? ")
     
-	# Check to see if the file exists
+    # Data file to store contacts in pickle form   
+    filename = 'contacts.txt'
+ 
+    # Check to see if the file exists
     if check():
         if os.stat(filename).st_size != 0:
         # If contacts.txt not empty read list in
             pickle_in = open("contacts.txt","rb")
             all_records = pickle.load(pickle_in)
     else:
-	    print("The contacts file is empty!")
-		return
-    
-    # How about a menu listing users?
-	print("Type the name to delete: \n"
-	
-    name = raw_input()
-	
+        print("The contacts file is empty!")
+        return
 
-		
+    new_all = []
+    for i in all_records:
+        if name not in i:
+            new_all.append(i)
+            print(new_all)
+
+    # Write out all records to file
+    pickle_out = open("contact.txt","wb")
+    pickle.dump(all_records, pickle_out)
+    pickle_out.close() 
 	
 		    
 def print_book():

@@ -1,6 +1,7 @@
 """ Address Book JDR  """
 import sys
-import os.path
+import os
+import pickle
 
 def main():
     """ Main entry point for the script."""
@@ -36,34 +37,34 @@ def add_contact():
     # List representing each record as it is input
     a_list = []
 	
-    # List representing all records
-    all_records = []
-	
+
     # File holding data
     filename = 'contacts.txt'
 
+    # New entries for 
+    new_entries = []
     # Use the header titles in headers to prompt for input
     for header in headers:
         entry = raw_input(header + ': ')
         a_list.append(entry)
-		
-    # Read nested list from file into all_records	
-    with open(filename) as file_object:
-        all_records = list(file_object.read())
-		
-    # Change from string into list
-    list(all_records)
 
-    """  Put the nested list from the file into biglist		
-    biglist = all_records[:] """
-	
+    # List representing all records
+    all_records = []		
+		
+	# Is contacts.txt empty?
+    if os.stat(filename).st_size != 0:
+        # Read nested list from file into all_records
+        pickle_in = open("all_records","rb")
+        all_records = pickle.load(pickle_in)
+
     # Append current contact record to biglist
     all_records.append(a_list)
-
-    # Write out nested list biglist to file
-    with open(filename, 'a') as file_object:
-        file_object.write(str(all_records))
-		
+	
+    # Write out all_records list to file
+    with open(filename) as file_object:
+        pickle_out = open("contact.txt","wb")
+        pickle.dump(all_records, pickle_out)
+        pickle_out.close()
 	
 def delete_contact():
     """ Delete contact """

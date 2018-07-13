@@ -48,23 +48,32 @@ def add_contact():
         entry = raw_input(header + ': ')
         a_list.append(entry)
 
-    # List representing all records
-    all_records = []		
-		
 	# Is contacts.txt empty?
     if os.stat(filename).st_size != 0:
-        # Read nested list from file into all_records
-        pickle_in = open("all_records","rb")
+        # If not read nested list from file into all_records
+        pickle_in = open("contacts.txt","rb")
         all_records = pickle.load(pickle_in)
-
-    # Append current contact record to biglist
-    all_records.append(a_list)
+    else:
+	    all_records = []
 	
+	# Append the new entries to the master list
+    all_records.append(a_list)
+
+    ## TESTINGTESTING 
+    # Print a_list
+    print(a_list)
+    print("\n")
+    # Print all_records to show what will be encoded and saved in the file
+    print(all_records)
+    
     # Write out all_records list to file
-    with open(filename) as file_object:
-        pickle_out = open("contact.txt","wb")
-        pickle.dump(all_records, pickle_out)
-        pickle_out.close()
+    pickle_out = open("contact.txt","wb")
+    pickle.dump(all_records, pickle_out)
+    pickle_out.close()
+	
+
+
+
 	
 def delete_contact():
     """ Delete contact """

@@ -1,11 +1,25 @@
 (lp0
-(lp1
 S'Jon Rooke'
-p2
+p1
 aS'3 Swallow Ln'
-p3
-aS'333'
+p2
+a(lp3
+S'Jim Johnson'
 p4
-aS'jon@yahoo.com'
+aS'4 Johnson St.'
 p5
+aa(lp6
+S'Jim Johnson'
+p7
+aS'4 Johnson St.'
+p8
+aa(lp9
+S'Alice'
+p10
+aS'3 Alice Place'
+p11
+aS'0000'
+p12
+aS'alice@yahoo.com'
+p13
 aa.

@@ -10,14 +10,14 @@ biglist = []
 	
 def menu():
     """ Main Menu """
-    print(30 * "-", "MENU", 30 * "-")
+    print("-----------MENU----------")
     print("1. Add contact")
     print("2. Delete contact") 
     print("3. Display contact info")
     print("4. Change an entry")
     print("5. Display all records")
     print("6. Exit")
-    print(67 * "-")
+    print("-------------------------")
 
 def check():
     """ Check for contacts.txt file """
@@ -202,7 +202,6 @@ while loop:
         sys.exit("Goodbye")			
     else: 
         print("\n Try again") 
-
 
 if __name__ == '__main__':
     sys.exit(main())

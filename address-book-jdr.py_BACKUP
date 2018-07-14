@@ -13,10 +13,11 @@ def menu():
     print(30 * "-", "MENU", 30 * "-")
     print("1. Add contact")
     print("2. Delete contact") 
-    print("3. Display contact info")
+    print("3. Find contact")
     print("4. Change an entry")
     print("5. Display all records")
-    print("6. Exit")
+    print("6. View and verify contact.txt file")
+    print("7. Exit")
     print(67 * "-")
 
 def check():
@@ -58,6 +59,13 @@ def add_contact():
 	# Append the new entries to the master list
     all_records.append(a_list)
 
+    ## TESTINGTESTING 
+    # Print a_list
+    print(a_list)
+    print("\n")
+    # Print all_records to show what will be encoded and saved in the file
+    print(all_records)
+    
     # Write out all_records list to file
     pickle_out = open("contact.txt","wb")
     pickle.dump(all_records, pickle_out)
@@ -76,7 +84,7 @@ def delete_contact():
     if check():
         if os.stat(filename).st_size != 0:
         # If contacts.txt not empty read list in
-            pickle_in = open(filename,"rb")
+            pickle_in = open("contacts.txt","rb")
             all_records = pickle.load(pickle_in)
     else:
         print("The contacts file is empty!")
@@ -89,68 +97,49 @@ def delete_contact():
             print(new_all)
 
     # Write out all records to file
-    pickle_out = open(filename, "wb")
+    pickle_out = open("contact.txt","wb")
     pickle.dump(all_records, pickle_out)
     pickle_out.close() 
 	
 		    
-def print_file():
-
-	# Check to see if the file exists
+def print_book():
+    """ Display contents of contacts.txt file."""
     filename = 'contacts.txt'
     if check():
-        if os.stat(filename).st_size != 0:
-        # If contacts.txt not empty read list in
-            pickle_in = open(filename,"rb")
-            all_records = pickle.load(pickle_in)
+        print("The contact.txt file is there.")
     else:
-        print("The contacts file is empty!")
-        return
-		
-    print(all_records)
-    print("\n")
-    raw_input("Press any key and enter to continue.")
+        return "You need a new contact.txt file!"
+	
+    with open(filename) as file_object:
+        a_lines = file_object.readlines()
+    
+    for a_line in a_lines:
+        print(a_line.rstrip())
+
+
+def read_file():
+    """ Read in contents of contacts.txt into a list """
+    if check():
+        print("The contact.txt file is there.")
+    else:
+        return "You need a new contact.txt file!"
+    list = []
+    filename = 'contacts.txt'
+    with open(filename) as f_obj:
+        a_lines = f_obj.reada_lines()
+    for a_line in a_lines:
+        print(a_line.rstrip())
+
 		
 def find_contact(name):
     """ Contact search """
-
-	# Check to see if the file exists
-    if check():
-        if os.stat(filename).st_size != 0:
-        # If contacts.txt not empty read list in
-            pickle_in = open(filename,"rb")
-            all_records = pickle.load(pickle_in)
-    else:
-        print("The contacts file is empty!")
-        return
-    # Use enumerate to list and find incr and print
-    for (i,record) in enumerate(all_records):
-        if name in record:
-            print(all_records[i])
-            
+    pass
 
 def modify_contact_data(name):
-    
-	# Check to see if the file exists
-    if check():
-        if os.stat(filename).st_size != 0:
-        # If contacts.txt not empty read list in
-            pickle_in = open(filename,"rb")
-            all_records = pickle.load(pickle_in)
-    else:
-        print("The contacts file is empty!")
-        return
-
-    new_all = []
-    for i in all_records:
-        if name not in i:
-            new_all.append(i)
-            print(new_all)
-
-    # Write out all records to file
-    pickle_out = open(filename, "wb")
-    pickle.dump(all_records, pickle_out)
-    pickle_out.close()
+    """ Modify contact """
+    """ Do a conditional test """
+    """ like name in list """
+    pass
 		
 loop=True
 while loop:
@@ -171,8 +160,11 @@ while loop:
         modify_contact_data()
     elif choice == 5:
         print("\n Display All Records")
-        print_file()
+        print_book()
     elif choice == 6:
+        print("\n Check on contact.txt")
+        check()
+    elif choice == 7:
         sys.exit("Goodbye")			
     else: 
         print("\n Try again") 

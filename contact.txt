@@ -1,16 +1,11 @@
 (lp0
-S'Jon Rooke'
-p1
-aS'3 Swallow Ln'
+(lp1
+S'Pat'
 p2
-a(lp3
-S'Jim Johnson'
+aS'15th Place'
+p3
+aS'8888'
 p4
-aS'4 Johnson St.'
+aS'pat@google.com'
 p5
-aa(lp6
-S'Jim Johnson'
-p7
-aS'4 Johnson St.'
-p8
 aa.

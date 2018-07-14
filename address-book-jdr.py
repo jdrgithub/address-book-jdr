@@ -111,7 +111,7 @@ def print_file():
     print("\n")
     raw_input("Press any key and enter to continue.")
 		
-def find_contact(name):
+def display_details():
     """ Contact search """
 
 	# Check to see if the file exists
@@ -123,13 +123,15 @@ def find_contact(name):
     else:
         print("The contacts file is empty!")
         return
+		
+	name = raw_input("Name to display details for? ")	
+		
     # Use enumerate to list and find incr and print
     for (i,record) in enumerate(all_records):
         if name in record:
-            print(all_records[i])
+            print(' '.join.all_records[i])
             
-
-def modify_contact_data(name):
+def change_details():
     
 	# Check to see if the file exists
     if check():
@@ -140,13 +142,37 @@ def modify_contact_data(name):
     else:
         print("The contacts file is empty!")
         return
+	
+	while true:
+	name = raw_input("Name to change details for? ")
+	print("Here are the contact details for that name: \n")
 
-    new_all = []
-    for i in all_records:
-        if name not in i:
-            new_all.append(i)
-            print(new_all)
+    # Use enumerate to list and find incr and print
+	contact_details = []
+    for (i,record) in enumerate(all_records):
+        if name in record:
+            contact_incr = i
+		    contact_details = all_records[i]
+            print(' '.join.all_records[i])
+    # Request input for category and set to appropriate address increment
+	category = raw_input("\nWhat category do you want to change for " + name ", address, phone, or email? \n")
+    if category == 'address':
+	    print("The address for " + name + " is: " contact_details[1].")
+        j = 1	
+	elif category == 'phone':
+        print("The phone for " + name + " is: " contact_details[2].")
+        j = 2
+	elif category == 'email':
+        print("The email for " + name + " is: " contact_details[3].")
+        j = 3
+	else:
+        print("You didn't select one of the three categories: address, phone, or email.")
 
+    # Pick a new value and enter new value into old_location using i and j
+    new_value = raw_input("\nWhat do you want the new value to be? ")
+	all_records[i][j] = new_value
+    print(all_records[i][j])	
+	
     # Write out all records to file
     pickle_out = open(filename, "wb")
     pickle.dump(all_records, pickle_out)
@@ -164,11 +190,11 @@ while loop:
         print("\n Delete contact")
         delete_contact()
     elif choice == 3:
-        print("\n Find Record")
-        find_record()
+        print("\n Display Contact Details")
+        display_details()
     elif choice == 4:
-        print("\n Change Record")
-        modify_contact_data()
+        print("\n Change Contact Details")
+        change_details()
     elif choice == 5:
         print("\n Display All Records")
         print_file()

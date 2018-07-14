@@ -7,7 +7,7 @@ def main():
     """ Main entry point for the script."""
 
 biglist = []
-	
+
 def menu():
     """ Main Menu """
     print("-----------MENU----------")
@@ -35,7 +35,7 @@ def add_contact():
     
     # List representing each record as it is input
     a_list = []
-	
+
 
     # File holding data
     filename = 'contacts.txt'
@@ -47,23 +47,23 @@ def add_contact():
         entry = raw_input(header + ': ')
         a_list.append(entry)
 
-	# Is contacts.txt empty?
+    # Is contacts.txt empty?
     if os.stat(filename).st_size != 0:
         # If not read nested list from file into all_records
         pickle_in = open("contacts.txt","rb")
         all_records = pickle.load(pickle_in)
     else:
-	    all_records = []
-	
-	# Append the new entries to the master list
+        all_records = []
+
+# Append the new entries to the master list
     all_records.append(a_list)
 
     # Write out all_records list to file
-    pickle_out = open("contact.txt","wb")
+    pickle_out = open("contacts.txt","wb")
     pickle.dump(all_records, pickle_out)
     pickle_out.close()
-	
-	
+
+
 def delete_contact():
     """ Delete contact """
     # Get name to delete record of
@@ -92,11 +92,10 @@ def delete_contact():
     pickle_out = open(filename, "wb")
     pickle.dump(all_records, pickle_out)
     pickle_out.close() 
-	
-		    
-def print_file():
 
-	# Check to see if the file exists
+
+def display_all_records():
+    # Check to see if the file exists
     filename = 'contacts.txt'
     if check():
         if os.stat(filename).st_size != 0:
@@ -105,16 +104,18 @@ def print_file():
             all_records = pickle.load(pickle_in)
     else:
         print("The contacts file is empty!")
+        all_records = []
         return
-		
+
     print(all_records)
     print("\n")
     raw_input("Press any key and enter to continue.")
-		
+
 def display_details():
     """ Contact search """
-
-	# Check to see if the file exists
+    filename = 'contacts.txt'
+    
+    # Check to see if the file exists
     if check():
         if os.stat(filename).st_size != 0:
         # If contacts.txt not empty read list in
@@ -123,17 +124,19 @@ def display_details():
     else:
         print("The contacts file is empty!")
         return
-		
-	name = raw_input("Name to display details for? ")	
-		
+
+    name = raw_input("Name to display details for? ")	
+
     # Use enumerate to list and find incr and print
     for (i,record) in enumerate(all_records):
         if name in record:
-            print(' '.join.all_records[i])
+            print(all_records[i])
             
 def change_details():
-    
-	# Check to see if the file exists
+    # Chenge address, phone, email for a name 
+    filename = 'contacts.txt'
+
+    # Check to see if the file exists
     if check():
         if os.stat(filename).st_size != 0:
         # If contacts.txt not empty read list in
@@ -142,63 +145,63 @@ def change_details():
     else:
         print("The contacts file is empty!")
         return
-	
-	while true:
-	name = raw_input("Name to change details for? ")
-	print("Here are the contact details for that name: \n")
+
+    name = raw_input("Name to change details for? \n")
+    print("Here are the contact details for that name: \n")
 
     # Use enumerate to list and find incr and print
-	contact_details = []
+    contact_details = []
     for (i,record) in enumerate(all_records):
         if name in record:
             contact_incr = i
-		    contact_details = all_records[i]
-            print(' '.join.all_records[i])
+            contact_details = all_records[i]
+            print(all_records[i])
     # Request input for category and set to appropriate address increment
-	category = raw_input("\nWhat category do you want to change for " + name ", address, phone, or email? \n")
+    category = raw_input("\nWhat category do you want to change for: address, phone, or email? \n")
     if category == 'address':
-	    print("The address for " + name + " is: " contact_details[1].")
+        print("The address is: " + contact_details[1] + "\n")
         j = 1	
-	elif category == 'phone':
-        print("The phone for " + name + " is: " contact_details[2].")
+    elif category == 'phone':
+        print("The phone is: " + contact_details[2] + "\n")
         j = 2
-	elif category == 'email':
-        print("The email for " + name + " is: " contact_details[3].")
+    elif category == 'email':
+        print("The email is: "  + contact_details[3] + "\n")
         j = 3
-	else:
+    else:
         print("You didn't select one of the three categories: address, phone, or email.")
 
     # Pick a new value and enter new value into old_location using i and j
     new_value = raw_input("\nWhat do you want the new value to be? ")
-	all_records[i][j] = new_value
+    all_records[i][j] = new_value
     print(all_records[i][j])	
-	
+
     # Write out all records to file
     pickle_out = open(filename, "wb")
     pickle.dump(all_records, pickle_out)
     pickle_out.close()
-		
+
+# Overarching loop that calls other functions
 loop=True
 while loop:
     menu()
-    choice = input("What would you like to do? ")
+    choice = raw_input("What would you like to do? ")
 
-    if choice == 1:
+    if choice == "1":
         print("\n Add Record")
         add_contact()
-    elif choice == 2:
+    elif choice == "2":
         print("\n Delete contact")
         delete_contact()
-    elif choice == 3:
+    elif choice == "3":
         print("\n Display Contact Details")
         display_details()
-    elif choice == 4:
+    elif choice == "4":
         print("\n Change Contact Details")
         change_details()
-    elif choice == 5:
+    elif choice == "5":
         print("\n Display All Records")
-        print_file()
-    elif choice == 6:
+        display_all_records()
+    elif choice == "6":
         sys.exit("Goodbye")			
     else: 
         print("\n Try again") 

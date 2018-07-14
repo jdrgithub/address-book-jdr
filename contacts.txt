@@ -22,8 +22,17 @@ S'alice'
 p12
 aS'55 Wexler St.'
 p13
-aS'6'
+aS'7'
 p14
 aS'alice@yahoo.com'
 p15
+aa(lp16
+S'Aine Doddy'
+p17
+aS'7215 37th'
+p18
+aS'2222222'
+p19
+aS'aine@yahoo'
+p20
 aa.

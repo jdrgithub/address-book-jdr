@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """ Address Book JDR  """
 import sys
 import os
@@ -6,18 +8,16 @@ import pickle
 def main():
     """ Main entry point for the script."""
 
-biglist = []
-
 def menu():
     """ Main Menu """
-    print("-----------MENU----------")
-    print("1. Add contact")
-    print("2. Delete contact") 
-    print("3. Display contact info")
-    print("4. Change an entry")
-    print("5. Display all records")
+    print("-----MENU-----")
+    print("1. Add Contact")
+    print("2. Delete Contact") 
+    print("3. Display Details")
+    print("4. Change Details")
+    print("5. Display All")
     print("6. Exit")
-    print("-------------------------")
+    print("-------------")
 
 def check():
     """ Check for contacts.txt file """
@@ -93,24 +93,6 @@ def delete_contact():
     pickle.dump(all_records, pickle_out)
     pickle_out.close() 
 
-
-def display_all_records():
-    # Check to see if the file exists
-    filename = 'contacts.txt'
-    if check():
-        if os.stat(filename).st_size != 0:
-        # If contacts.txt not empty read list in
-            pickle_in = open(filename,"rb")
-            all_records = pickle.load(pickle_in)
-    else:
-        print("The contacts file is empty!")
-        all_records = []
-        return
-
-    print(all_records)
-    print("\n")
-    raw_input("Press any key and enter to continue.")
-
 def display_details():
     """ Contact search """
     filename = 'contacts.txt'
@@ -126,11 +108,14 @@ def display_details():
         return
 
     name = raw_input("Name to display details for? ")	
-
+    print("\n")
     # Use enumerate to list and find incr and print
     for (i,record) in enumerate(all_records):
         if name in record:
-            print(all_records[i])
+            this_record = all_records[i]
+            print(' | '.join(this_record))
+            print("\n")
+    raw_input("Press enter to continue.")
             
 def change_details():
     # Chenge address, phone, email for a name 
@@ -179,30 +164,48 @@ def change_details():
     pickle_out = open(filename, "wb")
     pickle.dump(all_records, pickle_out)
     pickle_out.close()
+	
+
+def display_all():
+    # Check to see if the file exists
+    filename = 'contacts.txt'
+    if check():
+        if os.stat(filename).st_size != 0:
+        # If contacts.txt not empty read list in
+            pickle_in = open(filename,"rb")
+            all_records = pickle.load(pickle_in)
+    else:
+        print("The contacts file is empty!")
+        all_records = []
+        return
+
+    print(all_records)
+    print("\n")
+    raw_input("Press enter to continue.")
+
 
 # Overarching loop that calls other functions
 loop=True
 while loop:
     menu()
     choice = raw_input("What would you like to do? ")
-
     if choice == "1":
-        print("\n Add Record")
+        print("\n-----------Add Contact")
         add_contact()
     elif choice == "2":
-        print("\n Delete contact")
+        print("\n-----------Delete Contact")
         delete_contact()
     elif choice == "3":
-        print("\n Display Contact Details")
+        print("\n-----------Display Details")
         display_details()
     elif choice == "4":
-        print("\n Change Contact Details")
+        print("\n-----------Change Details")
         change_details()
     elif choice == "5":
-        print("\n Display All Records")
-        display_all_records()
+        print("\n-----------Display All")
+        display_all()
     elif choice == "6":
-        sys.exit("Goodbye")			
+        sys.exit("-----------Goodbye")			
     else: 
         print("\n Try again") 
 

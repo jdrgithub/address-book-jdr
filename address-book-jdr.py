@@ -133,7 +133,10 @@ def change_details():
 
     name = raw_input("Name to change details for? \n")
     print("Here are the contact details for that name: \n")
-
+""" WORKING ON THIS
+    new_list = [print(all_records[i]) for i,record in enumerate(all_records) if name in record]
+    
+"""
     # Use enumerate to list and find incr and print
     contact_details = []
     for (i,record) in enumerate(all_records):

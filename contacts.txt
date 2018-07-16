@@ -1,38 +1,20 @@
 (lp0
 (lp1
-S'jon'
+S'alice'
 p2
-aS'road'
+aS'55 Wexler St.'
 p3
-aS'1'
+aS'7'
 p4
-aS'j@google'
+aS'alice@yahoo.com'
 p5
 aa(lp6
-S'joe'
-p7
-aS'this'
-p8
-aS'5'
-p9
-aS'k@yahoo'
-p10
-aa(lp11
-S'alice'
-p12
-aS'55 Wexler St.'
-p13
-aS'7'
-p14
-aS'alice@yahoo.com'
-p15
-aa(lp16
 S'Aine Doddy'
-p17
+p7
 aS'7215 37th'
-p18
+p8
 aS'2222222'
-p19
+p9
 aS'aine@yahoo'
-p20
+p10
 aa.

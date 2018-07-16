@@ -55,7 +55,7 @@ def add_contact():
     else:
         all_records = []
 
-# Append the new entries to the master list
+    # Append the new entries to the master list
     all_records.append(a_list)
 
     # Write out all_records list to file
@@ -78,21 +78,25 @@ def delete_contact():
         # If contacts.txt not empty read list in
             pickle_in = open(filename,"rb")
             all_records = pickle.load(pickle_in)
+			
     else:
         print("The contacts file is empty!")
         return
 
-    new_all = []
-    for i in all_records:
-        if name not in i:
-            new_all.append(i)
+    new_all = []		
+    # Use enumerate to list and find incr and print
+    for (i,record) in enumerate(all_records):
+        if all_records[i][0] != name:
+            new_all.append(all_records[i])
             print(new_all)
-
+            print("\n")
+			
     # Write out all records to file
     pickle_out = open(filename, "wb")
-    pickle.dump(all_records, pickle_out)
+    pickle.dump(new_all, pickle_out)
     pickle_out.close() 
 
+	
 def display_details():
     """ Contact search """
     filename = 'contacts.txt'
@@ -133,10 +137,10 @@ def change_details():
 
     name = raw_input("Name to change details for? \n")
     print("Here are the contact details for that name: \n")
-""" WORKING ON THIS
+    """ WORKING ON THIS
     new_list = [print(all_records[i]) for i,record in enumerate(all_records) if name in record]
     
-"""
+    """
     # Use enumerate to list and find incr and print
     contact_details = []
     for (i,record) in enumerate(all_records):
@@ -179,7 +183,6 @@ def display_all():
             all_records = pickle.load(pickle_in)
     else:
         print("The contacts file is empty!")
-        all_records = []
         return
 
     print(all_records)

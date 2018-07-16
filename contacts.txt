@@ -1,20 +1,11 @@
 (lp0
 (lp1
-S'alice'
+S'Jon'
 p2
-aS'55 Wexler St.'
+aS'Street'
 p3
-aS'7'
+aS'333'
 p4
-aS'alice@yahoo.com'
+aS'jon@yahoo.com'
 p5
-aa(lp6
-S'Aine Doddy'
-p7
-aS'7215 37th'
-p8
-aS'2222222'
-p9
-aS'aine@yahoo'
-p10
 aa.

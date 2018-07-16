@@ -65,31 +65,32 @@ def add_contact():
 
 
 def delete_contact():
-    """ Delete contact """
-    # Get name to delete record of
-    name = raw_input("Name to delete record of? ")
-    
+    """ Delete contact """\
     # Data file to store contacts in pickle form   
     filename = 'contacts.txt'
- 
+    
     # Check to see if the file exists
     if check():
         if os.stat(filename).st_size != 0:
         # If contacts.txt not empty read list in
             pickle_in = open(filename,"rb")
             all_records = pickle.load(pickle_in)
-			
-    else:
-        print("The contacts file is empty!")
-        return
 
-    new_all = []		
-    # Use enumerate to list and find incr and print
-    for (i,record) in enumerate(all_records):
-        if all_records[i][0] != name:
-            new_all.append(all_records[i])
-            print(new_all)
-            print("\n")
+    new_all = []			
+    # Get name to delete record of
+    name = raw_input("Name to delete record of? ")			
+    for i in all_records:
+        if name != i[0]:
+            # Append records if they don't contain the name just entered
+            [new_all.append(all_records[i]) for (i,record) in enumerate(all_records) if all_records[i][0] != name ]
+            print(all_records[i])
+            break
+        else:
+            print("Name not in records.")
+			return
+
+    print(new_all)
+    print("\n")
 			
     # Write out all records to file
     pickle_out = open(filename, "wb")
@@ -112,7 +113,6 @@ def display_details():
         return
 
     name = raw_input("Name to display details for? ")	
-    print("\n")
     # Use enumerate to list and find incr and print
     for (i,record) in enumerate(all_records):
         if name in record:
@@ -137,10 +137,7 @@ def change_details():
 
     name = raw_input("Name to change details for? \n")
     print("Here are the contact details for that name: \n")
-    """ WORKING ON THIS
-    new_list = [print(all_records[i]) for i,record in enumerate(all_records) if name in record]
-    
-    """
+  
     # Use enumerate to list and find incr and print
     contact_details = []
     for (i,record) in enumerate(all_records):
@@ -148,7 +145,8 @@ def change_details():
             contact_incr = i
             contact_details = all_records[i]
             print(all_records[i])
-    # Request input for category and set to appropriate address increment
+    
+	# Request input for category and set to appropriate address increment
     category = raw_input("\nWhat category do you want to change for: address, phone, or email? \n")
     if category == 'address':
         print("The address is: " + contact_details[1] + "\n")
@@ -184,8 +182,8 @@ def display_all():
     else:
         print("The contacts file is empty!")
         return
-
-    print(all_records)
+    for a_line in all_records:
+        print(a_line)
     print("\n")
     raw_input("Press enter to continue.")
 
@@ -196,22 +194,22 @@ while loop:
     menu()
     choice = raw_input("What would you like to do? ")
     if choice == "1":
-        print("\n-----------Add Contact")
+        print("\n-----Add Contact------")
         add_contact()
     elif choice == "2":
-        print("\n-----------Delete Contact")
+        print("\n------Delete Contact-----")
         delete_contact()
     elif choice == "3":
-        print("\n-----------Display Details")
+        print("\n------Display Details-----")
         display_details()
     elif choice == "4":
-        print("\n-----------Change Details")
+        print("\n-----Change Details------")
         change_details()
     elif choice == "5":
-        print("\n-----------Display All")
+        print("\n-----Display All------")
         display_all()
     elif choice == "6":
-        sys.exit("-----------Goodbye")			
+        sys.exit("-----Goodbye------")			
     else: 
         print("\n Try again") 
 

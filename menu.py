@@ -1,18 +1,22 @@
 import sys
 import os.path
 
-def add_contact():
-    """ Add contact """
-    headers = ['name', 'address', 'phone', 'email']
-    list = []
-    for header in headers:
-        entry = raw_input(header + ': ')
-        list.append(entry)
-    filename = 'contacts.txt'
-    with open(filename, 'a') as file_object:
-        line = str(':'.join(list))
-        file_object.write(str(line) + "\n")
-add_contact()
+## ALL RECORDS
+all_records =[['jon', 'road', '1', 'j@google'], ['joe', 'this', '5', 'k@yahoo'], ['alice', '55 Wexler St.', '7', 'alice@yahoo.com'], ['Aine Doddy', '7215 37th', '2222222', 'aine@yahoo']]
+
+# LIST COMPREHENSION
+for i,record in enumerate(all_records):
+        
+
+# FOR LOOP
+contact_details = []
+for (i,record) in enumerate(all_records):
+        if name in record:
+            contact_incr = i
+            contact_details = all_records[i]
+            print(all_records[i])
+			
+			
 
 
 

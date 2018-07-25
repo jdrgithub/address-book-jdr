@@ -40,12 +40,9 @@ def is_it_there(name):
                                                               
   for i in all_records:                                  
     if i[0] == name:                                     
-      status = True                                      
-      break                                              
+      return True                                      
     else:                                                
-      status = False                                     
-  return status                                          
-                                          
+      return False                               
 
 def add_contact():
   """ Add contact """
@@ -94,10 +91,10 @@ def delete_contact():
       pickle_in = open(filename,"rb")
       all_records = pickle.load(pickle_in)
 
-  go_again == True  
-  while go_again == True: 
+  while True: 
     # Get name to delete record of
     name = raw_input("Name to delete record of? ")			
+
     # Use the is_it_there function to check in advance that the name is there
     # Otherwise it simply prints file without noting that the id wasn't there
     if is_it_there(name):
@@ -108,14 +105,10 @@ def delete_contact():
         else:
           print("The name you picked isn't in the contacts list.")
           select = raw_input("Try again.. y/n?")
-            if select == "y":
-              continue
-            else:
-              return
-
-
-  print(new_all)
-  print("\n")
+          if select == "y":
+            continue
+          else:
+            return
 
   # Write out all records to file
   pickle_out = open(filename, "wb")

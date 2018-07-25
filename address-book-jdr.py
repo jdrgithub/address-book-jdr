@@ -28,14 +28,32 @@ def check():
     return False
   return True
 
+def is_it_there(name):
+  # Check to see if name is in file                                                      
+  filename = "contacts.txt"                      
+                                                         
+  # Check to see if the file exists                        
+  if os.stat(filename).st_size != 0:                     
+    # If contacts.txt not empty read list in             
+    pickle_in = open(filename,"rb")                      
+    all_records = pickle.load(pickle_in)                 
+                                                              
+  for i in all_records:                                  
+    if i[0] == name:                                     
+      status = True                                      
+      break                                              
+    else:                                                
+      status = False                                     
+  return status                                          
+                                          
+
 def add_contact():
   """ Add contact """
   # Parameter names
-  headers = ['Name', 'Address', 'Phone', 'Email']
-  
+  headers = ['Name', 'Address', 'Phone', 'Email']                                      
+ 
   # List representing each record as it is input
   a_list = []
-
 
   # File holding data
   filename = 'contacts.txt'
@@ -76,31 +94,35 @@ def delete_contact():
       pickle_in = open(filename,"rb")
       all_records = pickle.load(pickle_in)
 
-  new_all = []			
-  # Get name to delete record of
-  name = raw_input("Name to delete record of? ")			
-  for i in all_records:
-    if i[0] == name:
+  go_again == True  
+  while go_again == True: 
+    # Get name to delete record of
+    name = raw_input("Name to delete record of? ")			
+    # Use the is_it_there function to check in advance that the name is there
+    # Otherwise it simply prints file without noting that the id wasn't there
+    if is_it_there(name):
+      new_all = []
       for i in all_records:
-        if j[0] != name:
-          # Append records if they don't contain the name just entered
-          [new_all.append(all_records[i]) for (i,record) in enumerate(all_records) if all_records[i][0] != name ]
-          break
+        if i[0] != name:
+          new_all.append(i[:])
         else:
-	  print(i[0])
-          print(all_records[0])
-      print("Name not in records.")
-      return
+          print("The name you picked isn't in the contacts list.")
+          select = raw_input("Try again.. y/n?")
+            if select == "y":
+              continue
+            else:
+              return
+
 
   print(new_all)
   print("\n")
-			
+
   # Write out all records to file
   pickle_out = open(filename, "wb")
   pickle.dump(new_all, pickle_out)
   pickle_out.close() 
 
-	
+
 def display_details():
   """ Contact search """
   filename = 'contacts.txt'
@@ -149,7 +171,7 @@ def change_details():
       contact_details = all_records[i]
       print(all_records[i])
   
-	# Request input for category and set to appropriate address increment
+# Request input for category and set to appropriate address increment
   category = raw_input("\nWhat category do you want to change for: address, phone, or email? \n")
   if category == 'address':
     print("The address is: " + contact_details[1] + "\n")
@@ -172,7 +194,7 @@ def change_details():
   pickle_out = open(filename, "wb")
   pickle.dump(all_records, pickle_out)
   pickle_out.close()
-	
+
 
 def display_all():
   # Check to see if the file exists

@@ -2,19 +2,19 @@
 (lp1
 S'Jon'
 p2
-aS'Street'
+aS'3 SWallow Ln'
 p3
 aS'333'
 p4
-aS'jon@yahoo.com'
+aS'j@y.c'
 p5
 aa(lp6
-S'pam'
+S'Mary'
 p7
-aS'3 street'
+aS'1 Jones St.'
 p8
-aS'444'
+aS'111'
 p9
-aS'pam@google'
+aS'mary@this.com'
 p10
 aa.

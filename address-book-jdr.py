@@ -29,20 +29,50 @@ def check():
   return True
 
 def is_it_there(name):
-  # Check to see if name is in file                                                      
-  filename = "contacts.txt"                      
-                                                         
-  # Check to see if the file exists                        
-  if os.stat(filename).st_size != 0:                     
-    # If contacts.txt not empty read list in             
-    pickle_in = open(filename,"rb")                      
-    all_records = pickle.load(pickle_in)                 
-                                                              
-  for i in all_records:                                  
-    if i[0] == name:                                     
-      return True                                      
-    else:                                                
-      return False                               
+  # Check to see if name is in file
+  filename = "contacts.txt"
+  print(name + " in is_it_there")
+
+  # Check to see if the file exists
+  all_records = []
+  if os.stat(filename).st_size != 0:
+    # If contacts.txt not empty read list in
+    pickle_in = open(filename,"rb")
+    all_records = pickle.load(pickle_in)
+
+  for i in all_records:
+    if i[0] == name:
+      return True
+  return False
+
+def delete_contact():
+  # Data file to store contacts in pickle form
+  filename = 'contacts.txt'
+
+  # Check to see if the file exists
+  if os.stat(filename).st_size != 0:
+    # If contacts.txt not empty read list in
+    pickle_in = open(filename,"rb")
+    all_records = pickle.load(pickle_in)
+
+  new_all = []
+  name = raw_input("Enter name or type exit. \n")
+  if name == "exit":
+    return
+  else:
+    if is_it_there(name):
+      for i in all_records:
+        if i[0] != name:
+          print("Copying" + i[0])
+          new_all.append(i)
+    else:
+      print("Sorry, " + name + " not there. \n")
+      return
+
+  # Write out all records to file
+  pickle_out = open(filename, "wb")
+  pickle.dump(new_all, pickle_out)
+  pickle_out.close()
 
 def add_contact():
   """ Add contact """
@@ -77,43 +107,6 @@ def add_contact():
   pickle_out = open("contacts.txt","wb")
   pickle.dump(all_records, pickle_out)
   pickle_out.close()
-
-
-def delete_contact():
-  """ Delete contact """\
-  # Data file to store contacts in pickle form   
-  filename = 'contacts.txt'
-  
-  # Check to see if the file exists
-  if check():
-    if os.stat(filename).st_size != 0:
-    # If contacts.txt not empty read list in
-      pickle_in = open(filename,"rb")
-      all_records = pickle.load(pickle_in)
-
-  while True: 
-    # Get name to delete record of
-    name = raw_input("Name to delete record of? ")			
-
-    # Use the is_it_there function to check in advance that the name is there
-    # Otherwise it simply prints file without noting that the id wasn't there
-    if is_it_there(name):
-      new_all = []
-      for i in all_records:
-        if i[0] != name:
-          new_all.append(i[:])
-        else:
-          print("The name you picked isn't in the contacts list.")
-          select = raw_input("Try again.. y/n?")
-          if select == "y":
-            continue
-          else:
-            return
-
-  # Write out all records to file
-  pickle_out = open(filename, "wb")
-  pickle.dump(new_all, pickle_out)
-  pickle_out.close() 
 
 
 def display_details():
@@ -234,3 +227,4 @@ while loop:
 
 if __name__ == '__main__':
   sys.exit(main())
+

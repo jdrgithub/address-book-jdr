@@ -31,7 +31,7 @@ def check():
 def is_it_there(name):
   # Check to see if name is in file
   filename = "contacts.txt"
-  print(name + " in is_it_there")
+  print(name + " is in the contacts file.")
 
   # Check to see if the file exists
   all_records = []
@@ -63,7 +63,6 @@ def delete_contact():
     if is_it_there(name):
       for i in all_records:
         if i[0] != name:
-          print("Copying" + i[0])
           new_all.append(i)
     else:
       print("Sorry, " + name + " not there. \n")
@@ -130,7 +129,6 @@ def display_details():
       this_record = all_records[i]
       print(' | '.join(this_record))
       print("\n")
-  raw_input("Press enter to continue.")
       
 def change_details():
   # Chenge address, phone, email for a name 
@@ -197,7 +195,6 @@ def display_all():
   for a_line in all_records:
     print(a_line)
   print("\n")
-  raw_input("Press enter to continue.")
 
 
 # Overarching loop that calls other functions
